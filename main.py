@@ -74,7 +74,14 @@ for filepath in glob.glob(os.path.join(dataset_path, '**', '*.csv'), recursive=T
     df = pd.read_csv(filepath)
     df.columns = [clean_column(col) for col in df.columns]
     dataframes.append(df)
-combined_df = pd.concat(dataframes, ignore_index=True)
+
+if dataframes:
+    combined_df = pd.concat(dataframes, ignore_index=True)
+    # Ensure 'visual_id' column exists
+    if 'visual_id' not in combined_df.columns:
+        raise ValueError("No 'visual_id' column found in the dataset")
+else:
+    raise ValueError("No CSV files found in the dataset folder or all CSV files are empty")
 
 # Ensure 'visual_id' column exists
 if 'visual_id' not in combined_df.columns:

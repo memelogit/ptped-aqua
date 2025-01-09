@@ -50,12 +50,16 @@ ENV_USERNAME=your-username
 ENV_PASSWORD=your-password
 ```
 
+### Dataset Directory
+
+Create the `dataset` directory and drop all CSV files with AQUA data.
+
 ### Running the Application
 
 To start the application locally on the 3000 port with 10 workers:
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 3000 --workers 10 --reload
+uvicorn main:app --host 127.0.0.1 --port 3000 --workers 10 --reload
 ```
 
 Alternatively, if you're using Docker:

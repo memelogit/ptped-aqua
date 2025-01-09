@@ -13,11 +13,6 @@ __pycache__/
 # Environment variables
 .env
 
-# Docker
-docker-compose.yml
-Dockerfile
-*.dockerfile
-
 # Virtual environment
 venv/
 .env/
