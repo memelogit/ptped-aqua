@@ -95,10 +95,11 @@ visual_data = combined_df.groupby('visual_id').apply(
 # Sanitize visual data before returning it
 sanitized_visual_data = sanitize_data(visual_data)
 
-@app.get("/visual_id", response_model=Dict[str, List[Dict]])
+@app.get("/visual_id", response_model=Dict[str, List[str]])
 def list_visual_ids(credentials: HTTPBasicCredentials = Depends(authenticate)):
     sanitized_data = sanitize_data(sanitized_visual_data)
-    return {"data": [{"visual_id": visual_id, "records": records} for visual_id, records in sanitized_data.items()]}
+    unique_visual_ids = list(set(sanitized_data.keys()))
+    return {"data": unique_visual_ids}
 
 @app.get("/visual_id/{visual_id}", response_model=Dict[str, List[Dict]])
 def get_visual_id(visual_id: str, credentials: HTTPBasicCredentials = Depends(authenticate)):
@@ -176,5 +177,3 @@ def get_visual_id_qdf(visual_id: str, qdf: str, credentials: HTTPBasicCredential
     result_data = {key: value for key, value in result_data.items() if value is not None}
 
     return {"data": result_data}
-
-# uvicorn main:app --host 0.0.0.0 --port 3000 --workers 10 --reload
