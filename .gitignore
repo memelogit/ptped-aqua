@@ -1,0 +1,32 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+
+# FastAPI
+*.log
+*.pid
+*.sock
+
+# Environment variables
+.env
+
+# Docker
+docker-compose.yml
+Dockerfile
+*.dockerfile
+
+# Virtual environment
+venv/
+.env/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Ignore dataset folder
+dataset/
